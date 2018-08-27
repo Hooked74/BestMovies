@@ -1,3 +1,3 @@
-// declare namespace BestMovies {
-//   //
-// }
+declare namespace BestMovies {
+  //
+}

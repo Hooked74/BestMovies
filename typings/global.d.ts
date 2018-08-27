@@ -22,6 +22,10 @@ declare var BlobBuilder: BlobBuilder;
 declare var WebKitBlobBuilder: WebKitBlobBuilder;
 declare var MozBlobBuilder: MozBlobBuilder;
 
+declare interface NodeModule {
+  hot: any;
+}
+
 declare namespace NodeJS {
   interface Global {
     fetch: any;
