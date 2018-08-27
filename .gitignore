@@ -36,9 +36,6 @@ build/Release
 node_modules/
 jspm_packages/
 
-# TypeScript v1 declaration files
-typings/
-
 # Optional npm cache directory
 .npm
 
@@ -59,3 +56,29 @@ typings/
 
 # next.js build output
 .next
+
+# testing
+/coverage
+
+# production
+/build
+/dist
+
+# IntelliJ project files
+.idea
+*.iml
+
+# VisualStudioCode project files
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# misc
+.cache
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
