@@ -13,7 +13,12 @@ module.exports = {
       flexbox: "no-2009"
     },
     "postcss-modules": {
-      generateScopedName: "[name]__[local]"
+      generateScopedName: function(name, filename, css) {
+        var path = require("path");
+        var file = path.basename(filename).split(".")[0];
+
+        return /index.less$/.test(filename) ? name : file + "__" + name;
+      } //"[name]__[local]"
     }
   }
 };

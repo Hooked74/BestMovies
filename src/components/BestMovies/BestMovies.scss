@@ -7,7 +7,7 @@ $footerHeight: 69px;
   padding: 0 50px;
 
   > * {
-    height: 100%;
+    min-height: inherit;
 
     background-color: white;
   }

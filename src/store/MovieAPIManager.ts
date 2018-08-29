@@ -1,8 +1,9 @@
-import { sync, urlResolve } from "../utils";
+import { preloadImage, sync, urlResolve } from "../utils";
 
 import IMovieFullVersion = BestMovies.store.IMovieFullVersion;
 import IMovieRecommendations = BestMovies.store.IMovieRecommendations;
 import IMovies = BestMovies.store.IMovies;
+import IMovie = BestMovies.store.IMovie;
 import IGenre = BestMovies.store.IGenre;
 
 class MovieAPIManager {
@@ -18,7 +19,7 @@ class MovieAPIManager {
   private readonly genresMethod: URL = urlResolve(this.baseURL, "genre/movie/list") as URL;
   private readonly movieDetailsMethod: URL = urlResolve(this.baseURL, "movie/") as URL;
 
-  public resolveImage(name: string, width: number = 200) {
+  public resolveImage(name: string, width: number = 200): string {
     return `https://image.tmdb.org/t/p/w${width}${name}`;
   }
 
@@ -60,9 +61,11 @@ class MovieAPIManager {
     return details;
   }
 
-  private fetchMovies(url: URL, page: string): Promise<IMovies> {
+  private async fetchMovies(url: URL, page: string): Promise<IMovies> {
     url.searchParams.set("page", page);
-    return this.fetch<IMovies>(url, "Couldn't get movie list");
+    const movies: IMovies = await this.fetch<IMovies>(url, "Couldn't get movie list");
+    await this.preloadMovies(movies);
+    return movies;
   }
 
   private async fetch<T>(url: URL, error?: string): Promise<T> {
@@ -75,6 +78,19 @@ class MovieAPIManager {
   private appendToken(url: URL) {
     if (!url.searchParams.has("api_key")) {
       url.searchParams.append("api_key", this.token);
+    }
+  }
+
+  private async preloadMovies(movies: IMovies): Promise<void> {
+    if (movies && Array.isArray(movies.results) && process.env.NODE_ENV !== "test") {
+      await Promise.all(
+        movies.results.reduce((accum: Array<Promise<any>>, movie: IMovie) => {
+          if (movie.poster_path) {
+            accum.push(preloadImage(this.resolveImage(movie.poster_path)).catch(() => void 0));
+          }
+          return accum;
+        }, [])
+      );
     }
   }
 }

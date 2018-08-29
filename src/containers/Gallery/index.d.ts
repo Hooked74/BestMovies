@@ -4,5 +4,7 @@ declare namespace BestMovies.containers.Gallery {
     genres?: Map<int, string>;
   }
 
-  interface IState {}
+  interface IState {
+    currentPage: number;
+  }
 }

@@ -1,5 +1,6 @@
+import { Pagination } from "antd";
 import classNames from "class-names";
-import React, { PureComponent } from "react";
+import React, { Fragment, PureComponent } from "react";
 import { connect } from "react-redux";
 import { RouteComponentProps } from "react-router";
 import Search from "../../components/Search/Search";
@@ -20,6 +21,10 @@ const mapStateToProps = state => ({
 });
 
 class Gallery extends PureComponent<IAdvancedProps, IState> {
+  public state: IState = {
+    currentPage: parseInt(this.props.match.params.page, 10)
+  };
+
   private executedSearchQuery: string;
 
   get thumbnailsClassName() {
@@ -29,7 +34,7 @@ class Gallery extends PureComponent<IAdvancedProps, IState> {
   get thumbnails(): JSX.Element {
     const { movies, genres } = this.props;
 
-    return movies ? (
+    return movies && movies.total_pages ? (
       <div className={this.thumbnailsClassName}>
         {movies.results.map((movie: IMovie) => (
           <Thumbnail
@@ -44,6 +49,35 @@ class Gallery extends PureComponent<IAdvancedProps, IState> {
         ))}
       </div>
     ) : null;
+  }
+
+  get pagination(): JSX.Element {
+    const { movies } = this.props;
+
+    this.state.currentPage = parseInt(this.props.match.params.page, 10);
+
+    return movies && movies.total_pages ? (
+      <div className={styles.pagination}>
+        <Pagination
+          current={this.state.currentPage}
+          total={movies.total_pages}
+          onChange={this.onChangePage}
+        />
+      </div>
+    ) : null;
+  }
+
+  get content(): JSX.Element {
+    const { movies } = this.props;
+
+    return movies && movies.total_results === 0 ? (
+      <div className={styles["no-matches"]}>No matches found</div>
+    ) : (
+      <Fragment>
+        {this.thumbnails}
+        {this.pagination}
+      </Fragment>
+    );
   }
 
   public componentDidMount() {
@@ -62,13 +96,18 @@ class Gallery extends PureComponent<IAdvancedProps, IState> {
   }
 
   public render() {
-    return <div className={styles.container}>{this.thumbnails}</div>;
+    return <div className={styles.container}>{this.content}</div>;
   }
 
   private loadMovies(searchQuery: string) {
     this.executedSearchQuery = searchQuery;
     this.props.loadMovies(this.props.match.params.page, searchQuery);
   }
+
+  private onChangePage = currentPage => {
+    this.setState({ currentPage });
+    this.props.history.push(`/page/${currentPage}${location.search}`);
+  };
 }
 
 export default connect(

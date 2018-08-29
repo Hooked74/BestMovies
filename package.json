@@ -134,7 +134,9 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^23.5.0",
     "jest-canvas-mock": "^1.1.0",
+    "less": "^3.8.1",
     "lint-staged": "^7.2.2",
+    "modules": "^0.4.0",
     "node-sass": "^4.9.3",
     "normalize-scss": "^7.0.1",
     "parcel-bundler": "^1.9.7",
@@ -163,8 +165,5 @@
     "utils": "^0.3.1",
     "whatwg-fetch": "^2.0.4",
     "yargs": "^12.0.1"
-  },
-  "devDependencies": {
-    "modules": "^0.4.0"
   }
 }

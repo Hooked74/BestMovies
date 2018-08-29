@@ -21,6 +21,7 @@ declare namespace BestMovies.store {
 
   interface IMovies {
     total_pages: int;
+    total_results: int;
     results: IMovie[];
   }
 

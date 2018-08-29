@@ -21,6 +21,17 @@
   }
 }
 
+.pagination {
+  margin-top: 20px;
+
+  text-align: center;
+}
+
+.no-matches {
+  text-align: center;
+  font-size: 20px;
+}
+
 @include media(">=1170px") {
   .thumbnails {
     grid-template-columns: repeat(5, 1fr);
