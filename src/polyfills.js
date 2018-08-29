@@ -1,4 +1,5 @@
 require("classlist-polyfill");
+require("url-polyfill");
 require("core-js");
 require("whatwg-fetch");
 
