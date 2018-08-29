@@ -4,9 +4,6 @@ import MovieAPIManager from "./MovieAPIManager";
 import Types from "./types";
 
 const actions = {
-  updateQuery() {
-    //
-  },
   loadMovies(page: string, query: string) {
     return async dispatch => {
       dispatch({

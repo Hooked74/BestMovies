@@ -13,6 +13,9 @@
     "prettier": "prettier --write",
     "lint": "tslint --fix -c ./tslint-base.json"
   },
+  "engines": {
+    "node": ">= 9.11.1"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Hooked74/BestMovies.git"
@@ -101,6 +104,7 @@
     ]
   },
   "dependencies": {
+    "@types/antd": "^1.0.0",
     "@types/enzyme": "^3.1.13",
     "@types/enzyme-adapter-react-16": "^1.0.3",
     "@types/gsap": "^1.19.2",
@@ -114,6 +118,7 @@
     "@types/redux": "^3.6.0",
     "@types/redux-logger": "^3.0.6",
     "@types/redux-thunk": "^2.1.0",
+    "antd": "^3.8.4",
     "autoprefixer": "^9.1.3",
     "class-names": "^1.0.0",
     "classlist-polyfill": "^1.2.0",

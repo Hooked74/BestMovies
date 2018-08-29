@@ -36,6 +36,7 @@ declare namespace NodeJS {
 }
 
 declare type int = number;
+declare type float = number;
 
 declare type Constructor<T> = new (...args: any[]) => T;
 declare type Decorator<T, U extends T> = (Component: Constructor<T>) => Constructor<U>;

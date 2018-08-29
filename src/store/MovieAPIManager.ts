@@ -18,6 +18,10 @@ class MovieAPIManager {
   private readonly genresMethod: URL = urlResolve(this.baseURL, "genre/movie/list") as URL;
   private readonly movieDetailsMethod: URL = urlResolve(this.baseURL, "movie/") as URL;
 
+  public resolveImage(name: string, width: number = 200) {
+    return `https://image.tmdb.org/t/p/w${width}${name}`;
+  }
+
   public getPopularMovies(page: string): Promise<IMovies> {
     return this.fetchMovies(this.popularMoviesMethod, page);
   }
@@ -27,7 +31,7 @@ class MovieAPIManager {
     return this.fetchMovies(this.searchMoviesMethod, page);
   }
 
-  public async getGenres(): Promise<Map<number, string>> {
+  public async getGenres(): Promise<Map<int, string>> {
     const { genres } = await this.fetch<{ genres: IGenre[] }>(
       this.genresMethod,
       "Couldn't get genre list"
@@ -37,10 +41,10 @@ class MovieAPIManager {
     return new Map(genres.map((genre: IGenre) => [
       genre.id,
       genre.name
-    ]) as Array<[number, string]>);
+    ]) as Array<[int, string]>);
   }
 
-  public async getMovieDetails(id: number): Promise<IMovieFullVersion> {
+  public async getMovieDetails(id: int): Promise<IMovieFullVersion> {
     const [details, recommendations] = await Promise.all([
       this.fetch<IMovieFullVersion>(
         urlResolve(this.movieDetailsMethod, `${id}`) as URL,

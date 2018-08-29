@@ -1,3 +1,4 @@
+import { Input } from "antd";
 import { Omit } from "lodash";
 import React, { ChangeEvent, KeyboardEvent, PureComponent } from "react";
 import { RouteComponentProps, withRouter } from "react-router";
@@ -32,15 +33,21 @@ class Search extends PureComponent<IAdvancedProps, IState> {
   };
 
   public render() {
-    return <input onKeyDown={this.onKeyDown} value={this.state.query} onChange={this.onChange} />;
+    return (
+      <Input.Search
+        onSearch={this.onSearch}
+        value={this.state.query}
+        onChange={this.onChange}
+        className={styles.container}
+        placeholder="Search movies"
+      />
+    );
   }
 
-  private onKeyDown = (e: KeyboardEvent) => {
-    if (e.keyCode === 13) {
-      const query: string = this.state.query.trim();
-      const url: string = `/page/1?${Search.URL_PARAMETER}=${query}`;
-      this.props.history.push(url);
-    }
+  private onSearch = () => {
+    const query: string = this.state.query.trim();
+    const url: string = `/page/1?${Search.URL_PARAMETER}=${query}`;
+    this.props.history.push(url);
   };
 
   private onChange = (e: ChangeEvent<HTMLInputElement>) => {

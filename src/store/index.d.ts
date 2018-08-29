@@ -1,5 +1,17 @@
 declare namespace BestMovies.store {
-  interface IMovie {}
+  interface IMovie {
+    backdrop_path: string;
+    genre_ids: int[];
+    id: int;
+    original_title: string;
+    overview: string;
+    popularity: string;
+    poster_path: string;
+    release_date: string;
+    title: string;
+    vote_average: float;
+    vote_count: int;
+  }
 
   interface IMovieFullVersion {
     recommendations?: IMovieRecommendations;
@@ -9,15 +21,16 @@ declare namespace BestMovies.store {
 
   interface IMovies {
     total_pages: int;
+    results: IMovie[];
   }
 
   interface IGenre {
-    id: number;
+    id: int;
     name: string;
   }
 
   interface IBaseState {
-    genres: Map<number, string>;
+    genres: Map<int, string>;
   }
 
   interface IState extends IBaseState {
@@ -34,6 +47,6 @@ declare namespace BestMovies.store {
   type TReducer = (state: IState, action: IAction) => IState;
 
   interface IActions {
-    loadMovies?(query: string, page: string): Promise<IAction>;
+    loadMovies?(query: string, page: string): (dispatch) => Promise<void>;
   }
 }
