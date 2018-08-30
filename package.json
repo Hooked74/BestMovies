@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "parcel public/index.html -p 3000",
-    "build": "rimraf dist && parcel build public/index.html",
+    "build": "rimraf dist && parcel build public/index.html --public-url '.'",
     "test": "node scripts/test.js --env=jsdom",
     "test-staged": "cross-env CI=true node scripts/test.js --env=jsdom --bail --findRelatedTests",
     "precommit": "lint-staged",
