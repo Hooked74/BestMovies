@@ -2054,7 +2054,7 @@ module.exports={container:"Loader__container"};
 },{"antd":"1cmS","class-names":"2woB","react":"1n8/","react-redux":"jYI/","./Loader.scss":"oHcq"}],"fY5E":[function(require,module,exports) {
 "use strict";Object.defineProperty(exports,"__esModule",{value:!0});var t=require("react"),e=r(t);function r(t){return t&&t.__esModule?t:{default:t}}var n=function(){var t=function(e,r){return(t=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(t,e){t.__proto__=e}||function(t,e){for(var r in e)e.hasOwnProperty(r)&&(t[r]=e[r])})(e,r)};return function(e,r){function n(){this.constructor=e}t(e,r),e.prototype=null===r?Object.create(r):(n.prototype=r.prototype,new n)}}(),o=function(t){function r(){return null!==t&&t.apply(this,arguments)||this}return n(r,t),r.prototype.render=function(){return e.default.createElement("div",null,"Preview")},r}(t.PureComponent);exports.default=o;
 },{"react":"1n8/"}],"H41Q":[function(require,module,exports) {
-module.exports="/logo.a3a7cbd8.png";
+module.exports="logo.0a19a960.png";
 },{}],"ZCjf":[function(require,module,exports) {
 module.exports={container:"Header__container",logo:"Header__logo"};
 },{}],"Gpn0":[function(require,module,exports) {
@@ -2171,4 +2171,4 @@ module.exports=function(n){return new Promise(function(e,o){var r=document.creat
 },{}],0:[function(require,module,exports) {
 var b=require("21/1");b.register("js",require("Yi9z"));
 },{}]},{},[0,"68wG"], null)
-//# sourceMappingURL=/src.2e1d7848.map
+//# sourceMappingURL=src.2e1d7848.map
