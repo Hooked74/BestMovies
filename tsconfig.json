@@ -1,0 +1,52 @@
+{
+  "compilerOptions": {
+    "outDir": "dist",
+    "module": "esnext",
+    "target": "es5",
+    "lib": ["esnext", "dom"],
+    "sourceMap": true,
+    "allowJs": true,
+    "jsx": "react",
+    "moduleResolution": "node",
+    "rootDir": "src",
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": false,
+    "noFallthroughCasesInSwitch": true,
+    "pretty": true,
+    "preserveSymlinks": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "alwaysStrict": true,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./src",
+    "typeRoots": ["./typings", "./node_modules/@types", "./src"],
+    "paths": {
+      "*": ["*"]
+    },
+    "downlevelIteration": true
+  },
+  "exclude": [
+    "node_modules",
+    "build",
+    "scripts",
+    "acceptance-tests",
+    "webpack",
+    "jest",
+    "src/setupTests.ts",
+    "src/lib/*/**.js"
+  ],
+  "typedocOptions": {
+    "theme": "default",
+    "mode": "modules",
+    "excludePrivate": false,
+    "excludeNotExported": false,
+    "target": "ES5",
+    "moduleResolution": "node",
+    "module": "esnext",
+    "includeDeclarations": true,
+    "excludeProtected": false,
+    "ignoreCompilerErrors": true
+  }
+}

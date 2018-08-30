@@ -1,0 +1,96 @@
+@import "../../style/utils/variables";
+@import "../../style/utils/functions";
+@import "../../style/utils/mixins";
+
+.container {
+  padding: 20px 15px;
+}
+
+.thumbnails {
+  display: grid;
+
+  grid-gap: 20px 0;
+  justify-items: center;
+}
+
+.fallback {
+  display: block;
+
+  > * {
+    margin-bottom: 20px;
+  }
+}
+
+.pagination {
+  margin-top: 20px;
+
+  text-align: center;
+}
+
+.no-matches {
+  text-align: center;
+  font-size: 20px;
+}
+
+@include media(">=1170px") {
+  .thumbnails {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .fallback {
+    > * + * {
+      margin-left: calc((100% - 5 * 200px) / 4);
+    }
+
+    > *:nth-child(5n + 1) {
+      margin-left: 0;
+    }
+  }
+}
+
+@include media(">=970px", "<1170px") {
+  .thumbnails {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .fallback {
+    > * + * {
+      margin-left: calc((100% - 4 * 200px) / 3);
+    }
+
+    > *:nth-child(4n + 1) {
+      margin-left: 0;
+    }
+  }
+}
+
+@include media(">=550px", "<970px") {
+  .thumbnails {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .fallback {
+    > * + * {
+      margin-left: calc(100% - 2 * 200px);
+    }
+
+    > *:nth-child(2n + 1) {
+      margin-left: 0;
+    }
+  }
+}
+
+@include media("<550px") {
+  .thumbnails {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .fallback {
+    display: block;
+
+    text-align: center;
+    > * {
+      display: block;
+    }
+  }
+}
